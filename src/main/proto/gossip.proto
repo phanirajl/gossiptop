@@ -5,14 +5,42 @@ option java_outer_classname = "GossipServer";
 
 service GossipService {
     rpc UpdateState(State) returns (Empty) {}
+    rpc GetTrace(TraceRequest) returns (TraceResult) {}
+    rpc FollowGossipMessages(GossipRequest) returns (stream GossipMessage) {}
+    rpc FollowNode(FollowNodeRequest) returns (stream GossipMessage) {}
 }
 
 message State {
     required int32 test = 1;
     required int32 version = 2;
     required int32 generation = 3;
+    required string ip = 4;
+}
+
+message TraceRequest {
+    required string ip = 1;
+}
+
+message TraceResult {
+
 }
 
 message Empty {
 
+}
+
+message Nodes {
+
+}
+
+message GossipRequest {
+
+}
+
+message GossipMessage {
+
+}
+
+message FollowNodeRequest {
+    required string ip = 4;
 }
