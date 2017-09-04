@@ -2,9 +2,12 @@ package com.rustyrazorblade.gossiptop
 
 import org.neo4j.graphdb.GraphDatabaseService
 import org.neo4j.graphdb.Label
+import org.neo4j.graphdb.Node
+import org.neo4j.graphdb.ResourceIterator
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
 import java.io.File
 
+data class CassandraNode(val ip: String)
 
 class TraceDB(path: String) {
     var db: GraphDatabaseService
@@ -15,8 +18,6 @@ class TraceDB(path: String) {
     }
 
     // update the state
-
-    // fetch all the nodes
     fun createNode(ip: String) {
         var label = Label.label("server")
 
@@ -24,5 +25,15 @@ class TraceDB(path: String) {
         var node = db.createNode(*arrayOf(label))
         node.setProperty("ip", ip)
         tx.success()
+    }
+
+    // fetch all the nodes
+    fun listAllNodes() : ArrayList<CassandraNode> {
+        var nodes = db.findNodes(Label.label("server"))
+        var result = arrayListOf<CassandraNode>()
+        for (node in nodes) {
+            result.add(CassandraNode(node.getProperty("ip") as String))
+        }
+        return result
     }
 }
