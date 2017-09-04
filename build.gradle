@@ -85,4 +85,7 @@ compileTestKotlin {
 compileKotlin.dependsOn ':generateProto'
 sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java/'
 
+sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/grpc/com/rustyrazorblade/gossiptop/'
+sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java/com/rustyrazorblade/gossiptop/'
+
 

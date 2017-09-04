@@ -4,9 +4,15 @@ option java_package = "com.rustyrazorblade.gossiptop";
 option java_outer_classname = "GossipServer";
 
 service GossipService {
-    rpc UpdateState(State) returns (State) {}
+    rpc UpdateState(State) returns (Empty) {}
 }
 
 message State {
     required int32 test = 1;
+    required int32 version = 2;
+    required int32 generation = 3;
+}
+
+message Empty {
+
 }
