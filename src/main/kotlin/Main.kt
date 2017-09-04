@@ -1,5 +1,8 @@
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
+package com.rustyrazorblade.gossiptop
+
+import io.grpc.Server
+import io.grpc.ServerBuilder
+
 
 fun main(args: Array<String>) {
     println("Running the server!")

@@ -21,7 +21,7 @@ apply plugin: 'application'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'idea'
 
-mainClassName = "com.rustyrazorblade.com.gossiptop.MainKt"
+mainClassName = "com.rustyrazorblade.gossiptop.MainKt"
 
 repositories {
     mavenCentral()
@@ -83,7 +83,6 @@ compileTestKotlin {
 
 // auto build protobufs
 compileKotlin.dependsOn ':generateProto'
-sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java/'
 
 sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/grpc'
 sourceSets.main.java.srcDirs += 'build/generated/source/proto/main/java'
