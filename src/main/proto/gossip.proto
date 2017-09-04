@@ -1,4 +1,4 @@
-syntax = "proto3";
+syntax = "proto2";
 
 option java_package = "com.rustyrazorblade.gossiptop";
 option java_outer_classname = "GossipServer";
@@ -8,5 +8,5 @@ service GossipService {
 }
 
 message State {
-    int32 test = 1;
+    required int32 test = 1;
 }
