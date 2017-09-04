@@ -1,0 +1,9 @@
+.idea/*
+*.iml
+*.pyc
+.DS_Store
+.vagrant.v1*
+.tags*
+/.gradle/
+/out/
+/build/
