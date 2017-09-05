@@ -2,14 +2,24 @@ import org.junit.Test
 import org.junit.Assert.*
 
 import com.rustyrazorblade.gossiptop.TraceDB;
+import org.junit.Before
 import org.neo4j.graphdb.factory.GraphDatabaseFactory
+import org.neo4j.test.TestGraphDatabaseFactory
 import java.io.File
 
 class TraceDBTests {
+    private lateinit var db: TraceDB
+
+    @Before
+    fun createDatabase() {
+        var neodb = TestGraphDatabaseFactory().newImpermanentDatabase();
+
+//        var neodb = GraphDatabaseFactory().newEmbeddedDatabase(File("/tmp/db/whatever"))
+        db = TraceDB(neodb)
+    }
+
     @Test
     fun testCreateNode() {
-        var neodb = GraphDatabaseFactory().newEmbeddedDatabase(File("/tmp/db/whatever"))
-        var db = TraceDB(neodb)
 
         db.createNode("127.0.0.1")
         var nodes = db.listAllNodes()
