@@ -37,4 +37,11 @@ class TraceDBTests {
     fun testListAll() {
 
     }
+
+    @Test
+    fun testGetNode() {
+        db.createNode("127.0.0.1")
+        var node = db.getNode("127.0.0.1")
+        assertEquals("127.0.0.1", node.ip)
+    }
 }
