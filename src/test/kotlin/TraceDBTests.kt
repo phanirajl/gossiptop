@@ -11,6 +11,14 @@ class TraceDBTests {
         var nodes = db.listAllNodes()
         var count = nodes.count()
         assertEquals(1, count)
+        var node = nodes[0]
+        assertEquals("127.0.0.1", node.ip)
+
+        db.createNode("127.0.0.2")
+        var nodes2 = db.listAllNodes()
+        var count2 = nodes2.count()
+        assertEquals(2, count2)
+
     }
 
     @Test
