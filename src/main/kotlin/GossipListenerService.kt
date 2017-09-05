@@ -13,4 +13,5 @@ class GossipListenerService(var database: TraceDB) : GossipServiceImplBase() {
         responseObserver!!.onCompleted()
     }
 
+
 }
