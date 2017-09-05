@@ -48,4 +48,15 @@ class TraceDBTests {
     fun testGetNodeNotFound() {
         var node2 = db.getNode("127.0.0.1")
     }
+
+    @Test
+    fun testListNodes() {
+        db.createNode("127.0.0.1")
+        db.createNode("127.0.0.2")
+        db.createNode("127.0.0.3")
+
+        var nodes = db.listAllNodes()
+        assertEquals(3, nodes.count())
+
+    }
 }
