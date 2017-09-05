@@ -9,13 +9,7 @@ import java.io.File
 
 data class CassandraNode(val ip: String)
 
-class TraceDB(path: String) {
-    var db: GraphDatabaseService
-
-    init {
-        val fp = File(path)
-        db = GraphDatabaseFactory().newEmbeddedDatabase(fp)
-    }
+class TraceDB(val db: GraphDatabaseService) {
 
     // update the state
     fun createNode(ip: String) {
