@@ -13,8 +13,6 @@ class TraceDBTests {
     @Before
     fun createDatabase() {
         var neodb = TestGraphDatabaseFactory().newImpermanentDatabase();
-
-//        var neodb = GraphDatabaseFactory().newEmbeddedDatabase(File("/tmp/db/whatever"))
         db = TraceDB(neodb)
     }
 
