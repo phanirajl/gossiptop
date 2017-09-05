@@ -9,6 +9,8 @@ import java.io.File
 
 data class CassandraNode(val ip: String)
 
+class NotFoundException(override var message:String): Exception()
+
 class TraceDB(val db: GraphDatabaseService) {
     private val SERVER: Label = Label.label("server")
     private val MESSAGE: Label = Label.label("message")
@@ -32,8 +34,16 @@ class TraceDB(val db: GraphDatabaseService) {
     }
 
     fun getNode(ip: String): CassandraNode {
-        val node = db.findNode(SERVER, "ip", ip)
-        return CassandraNode(node.getProperty("ip") as String)
+        var tx = db.beginTx()
+
+        try {
+            val node = db.findNode(SERVER, "ip", ip)
+            return CassandraNode(node.getProperty("ip") as String)
+        } catch (e: Exception) {
+            throw NotFoundException(ip + " not found")
+        } finally {
+            tx.success()
+        }
     }
 
     fun getReceivedMessages(ip: String) {

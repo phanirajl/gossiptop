@@ -1,3 +1,4 @@
+import com.rustyrazorblade.gossiptop.NotFoundException
 import org.junit.Test
 import org.junit.Assert.*
 
@@ -18,7 +19,6 @@ class TraceDBTests {
 
     @Test
     fun testCreateNode() {
-
         db.createNode("127.0.0.1")
         var nodes = db.listAllNodes()
         var count = nodes.count()
@@ -30,7 +30,6 @@ class TraceDBTests {
         var nodes2 = db.listAllNodes()
         var count2 = nodes2.count()
         assertEquals(2, count2)
-
     }
 
     @Test
@@ -43,5 +42,10 @@ class TraceDBTests {
         db.createNode("127.0.0.1")
         var node = db.getNode("127.0.0.1")
         assertEquals("127.0.0.1", node.ip)
+    }
+
+    @Test(expected = NotFoundException::class)
+    fun testGetNodeNotFound() {
+        var node2 = db.getNode("127.0.0.1")
     }
 }
